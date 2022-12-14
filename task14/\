@@ -1,0 +1,31 @@
+S = set()
+
+BOTTOM = 0
+
+with open('example.txt') as f:
+    for line in f:
+        points = line.strip().split()
+        print(points)
+        for i in range(len(points) -1):
+            x1,y1 = points[i].split(',')
+            x2,y2 = points[i+1].split(',')
+
+            x1, y1, x2, y2 = [int(x) for x in [x1, y1, x2, y2]]
+
+            print(x1,y1,'->', x2,y2)
+
+            x1, x2 = min(x1, x2), max(x1,x2)
+            y1, y2 = min(y1, y2), max(y1,y2)
+            
+            BOTTOM = max(BOTTOM, y2)
+
+            for x in range(x1, x2+1):
+                for y in range(y1, y2+1):
+                    S.add((x,y))
+            
+
+
+
+
+
+print(S)
